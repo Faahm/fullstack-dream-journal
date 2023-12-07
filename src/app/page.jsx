@@ -1,5 +1,5 @@
 import React from "react";
-import AddForm from "./components/AddForm";
+import AddDream from "./components/AddDream";
 import DreamsList from "./components/DreamsList";
 import { getAllDreams } from "../lib/utils";
 import Image from "next/image";
@@ -19,7 +19,7 @@ const Home = async () => {
           priority
         />
       </div>
-      <AddForm />
+      <AddDream />
       <DreamsList data={dreams} />
     </div>
   );

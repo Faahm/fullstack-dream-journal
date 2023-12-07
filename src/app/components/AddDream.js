@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { createDreamAction } from "./_actions";
 
-const AddForm = () => {
+const AddDream = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -62,4 +62,4 @@ const AddForm = () => {
   );
 };
 
-export default AddForm;
+export default AddDream;
