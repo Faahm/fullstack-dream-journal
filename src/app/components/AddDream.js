@@ -32,23 +32,23 @@ const AddDream = () => {
   };
 
   return (
-    <div className="p-8">
+    <div className="flex flex-col p-8 justify-center items-center">
       <form
         onSubmit={(e) => handleOnSubmit(e)}
-        className="flex flex-col gap-4 p-4 bg-secondary rounded-md"
+        className="flex flex-col gap-4 p-4 bg-secondary rounded-md w-[50rem] h-auto"
       >
         <input
           placeholder="Title"
           value={title}
           onChange={(e) => handleOnChange(e, setTitle)}
-          className="p-2 border rounded"
+          className="p-2 border rounded content-start"
           required
         />
-        <input
+        <textarea
           placeholder="Entry"
           value={content}
           onChange={(e) => handleOnChange(e, setContent)}
-          className="p-2 border rounded"
+          className="p-2 border rounded h-40"
           required
         />
         <button

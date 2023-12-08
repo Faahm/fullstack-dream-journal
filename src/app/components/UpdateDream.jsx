@@ -44,7 +44,7 @@ const UpdateDream = ({ dream }) => {
           className="p-2 rounded-md w-full mb-2"
           placeholder="Title"
         />
-        <input
+        <textarea
           value={content}
           onChange={(e) => handleOnChange(e, setContent)}
           className="p-2 rounded-md w-full mb-2"
