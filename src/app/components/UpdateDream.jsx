@@ -56,8 +56,7 @@ const UpdateDream = ({ dream }) => {
         >
           Update
         </button>
-        {/* Style this pls ty uwu */}
-        <button className="bg-accent text-white px-4 py-2 rounded-md mt-4">
+        <button className="bg-accent text-white px-4 py-2 rounded-md mt-4 ml-5">
           <Link href={"/"}>Back to Homepage</Link>
         </button>
       </form>
