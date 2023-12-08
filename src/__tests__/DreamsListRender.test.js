@@ -22,7 +22,7 @@ const mockDreams = [
 
 describe("DreamsList component", () => {
   it("renders each dream with its title, content, and dates", () => {
-    const { getByText, getByRole, getAllByText } = render(
+    const { getByText, getAllByText } = render(
       <DreamsList data={mockDreams} />
     );
 
