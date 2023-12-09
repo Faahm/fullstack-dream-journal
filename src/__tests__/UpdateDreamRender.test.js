@@ -1,28 +1,45 @@
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import UpdateDream from "../app/components/UpdateDream";
 
-jest.mock("../app/components/_actions", () => ({
-  updateDreamAction: jest.fn(),
-}));
+jest.mock("../app/components/_actions");
 
-describe("UpdateDream", () => {
-  describe("Render UpdateDream Component", () => {
-    it("Should render UpdateDream component with data", () => {
-      const dreamData = {
-        id: 1,
-        title: "Dream",
-        content: "Entry",
-      };
+describe("UpdateDream component", () => {
+  const mockDream = {
+    id: 1,
+    title: "My Dream",
+    content: "This is my dream entry.",
+    createdAt: new Date(2023, 11, 9),
+    updatedAt: new Date(2023, 11, 9),
+  };
 
-      const { getByPlaceholderText, getByText } = render(
-        <UpdateDream dream={dreamData} />
-      );
+  it("renders the dream title", () => {
+    render(<UpdateDream dream={mockDream} />);
+    expect(screen.getByTestId("title")).toHaveTextContent("My Dream");
+  });
 
-      expect(getByPlaceholderText("Title").value).toBe("Dream");
-      expect(getByPlaceholderText("Entry").value).toBe("Entry");
+  it("renders the dream creation date", () => {
+    render(<UpdateDream dream={mockDream} />);
+    expect(screen.getByTestId("created-at")).toHaveTextContent("Created At:");
+    expect(screen.getByTestId("updated-at")).toHaveTextContent("Updated At:");
+  });
 
-      expect(getByText("Update")).toBeInTheDocument();
-    });
+  it("renders the dream content", () => {
+    render(<UpdateDream dream={mockDream} />);
+    expect(screen.getByTestId("content")).toHaveTextContent(
+      "This is my dream entry."
+    );
+  });
+
+  it("renders the update button", () => {
+    render(<UpdateDream dream={mockDream} />);
+    expect(screen.getByRole("button", { name: "Update" })).toBeInTheDocument();
+  });
+
+  it("renders the back to homepage button", () => {
+    render(<UpdateDream dream={mockDream} />);
+    expect(
+      screen.getByRole("link", { name: "Back to Homepage" })
+    ).toBeInTheDocument();
   });
 });

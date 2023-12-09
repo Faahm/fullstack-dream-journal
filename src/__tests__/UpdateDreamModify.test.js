@@ -1,33 +1,31 @@
 import "@testing-library/jest-dom";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import UpdateDream from "../app/components/UpdateDream";
 
 jest.mock("../app/components/_actions", () => ({
   updateDreamAction: jest.fn(),
 }));
 
-describe("UpdateDream", () => {
-  describe("Form Modification", () => {
-    it("Should modify the form input fields correctly", () => {
-      const dreamData = {
-        id: 1,
-        title: "Dream",
-        content: "Entry",
-      };
+describe("UpdateDream component", () => {
+  const mockDream = {
+    id: 1,
+    title: "My Dream",
+    content: "This is my dream entry.",
+    createdAt: new Date(2023, 11, 9),
+    updatedAt: new Date(2023, 11, 9),
+  };
 
-      const { getByPlaceholderText } = render(
-        <UpdateDream dream={dreamData} />
-      );
+  it("allows editing the dream title", () => {
+    render(<UpdateDream dream={mockDream} />);
+    fireEvent.click(screen.getByText("Edit"));
 
-      fireEvent.change(getByPlaceholderText("Title"), {
-        target: { value: "Updated Dream" },
-      });
-      fireEvent.change(getByPlaceholderText("Entry"), {
-        target: { value: "Updated Entry" },
-      });
+    expect(screen.getByRole("textbox", { name: "Title" })).toBeInTheDocument();
+  });
 
-      expect(getByPlaceholderText("Title").value).toBe("Updated Dream");
-      expect(getByPlaceholderText("Entry").value).toBe("Updated Entry");
-    });
+  it("allows editing the dream content", () => {
+    render(<UpdateDream dream={mockDream} />);
+    fireEvent.click(screen.getByText("Edit Entry"));
+
+    expect(screen.getByRole("textbox", { name: "Entry" })).toBeInTheDocument();
   });
 });

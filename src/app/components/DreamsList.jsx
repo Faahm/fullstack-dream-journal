@@ -29,7 +29,9 @@ const DreamsList = ({ data }) => {
               <h1 className="text-4xl font-display text-text truncate">
                 {dream.title}
               </h1>
-              <p className="text-white break-words font-semibold">{dream.content}</p>
+              <p className="text-white break-words font-semibold truncate">
+                {dream.content}
+              </p>
               <p className="text-white text-sm mt-3">
                 Created At: {formatDateTime(dream.createdAt)}
               </p>

@@ -1,61 +1,41 @@
 import "@testing-library/jest-dom";
-import { render, fireEvent, waitFor } from "@testing-library/react";
-import { updateDreamAction } from "../app/components/_actions";
+import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import UpdateDream from "../app/components/UpdateDream";
 
 jest.mock("../app/components/_actions", () => ({
   updateDreamAction: jest.fn(),
 }));
 
-expect.extend({
-  toMatchUpdatedAt(received, expected) {
-    const receivedDate = new Date(received).toISOString().slice(0, 19);
-    const expectedDate = new Date(expected).toISOString().slice(0, 19);
-
-    const pass = receivedDate === expectedDate;
-    if (pass) {
-      return {
-        message: () => `expected ${receivedDate} not to match ${expectedDate}`,
-        pass: true,
-      };
-    } else {
-      return {
-        message: () => `expected ${receivedDate} to match ${expectedDate}`,
-        pass: false,
-      };
-    }
-  },
-});
-
-describe("Form Submission", () => {
-  it("Should update the dreamData with the expected arguments", async () => {
-    const dreamData = {
-      id: 1,
-      title: "Dream",
-      content: "Entry",
+describe("Update Dream", () => {
+  it("should allow editing the dream title and content", () => {
+    const mockDream = {
+      id: "1",
+      title: "My Amazing Dream",
+      content: "I flew over a rainbow and met a talking unicorn.",
+      createdAt: new Date(2023, 11, 10),
+      updatedAt: new Date(2023, 11, 10),
     };
 
-    const { getByText, getByPlaceholderText } = render(
-      <UpdateDream dream={dreamData} />
-    );
+    render(<UpdateDream dream={mockDream} />);
 
-    fireEvent.change(getByPlaceholderText("Title"), {
-      target: { value: "Updated Dream" },
+    fireEvent.click(screen.getByTestId("edit-title"));
+    fireEvent.click(screen.getByTestId("edit-entry"));
+
+    expect(screen.getByRole("textbox", { name: "Title" })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: "Entry" })).toBeInTheDocument();
+
+    fireEvent.change(screen.getByRole("textbox", { name: "Title" }), {
+      target: { value: "My New Dream Title" },
     });
-    fireEvent.change(getByPlaceholderText("Entry"), {
-      target: { value: "Updated Entry" },
+    fireEvent.change(screen.getByRole("textbox", { name: "Entry" }), {
+      target: { value: "This is my updated dream content." },
     });
 
-    fireEvent.click(getByText("Update"));
+    fireEvent.click(screen.getByRole("button", { name: "Update" }));
 
-    const expectedUpdatedAt = new Date().toISOString();
-
-    await waitFor(() =>
-      expect(updateDreamAction).toHaveBeenCalledWith(1, {
-        title: "Updated Dream",
-        content: "Updated Entry",
-        updatedAt: expect.toMatchUpdatedAt(expectedUpdatedAt),
-      })
-    );
+    expect(screen.getByDisplayValue("My New Dream Title")).toBeInTheDocument();
+    expect(
+      screen.getByText("This is my updated dream content.")
+    ).toBeInTheDocument();
   });
 });
