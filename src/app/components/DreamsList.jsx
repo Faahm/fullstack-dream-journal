@@ -23,17 +23,17 @@ const DreamsList = ({ data }) => {
         data.map((dream) => (
           <div
             key={dream.id}
-            className="p-4 rounded-md shadow-md bg-secondary w-auto hover:bg-accent transition duration-300"
+            className="h-fit p-4 rounded-md shadow-md bg-secondary w-auto hover:bg-accent transition duration-300"
           >
             <Link href={`/dreams/${dream.id}`}>
               <h1 className="text-4xl font-display text-text truncate">
                 {dream.title}
               </h1>
-              <p className="text-white truncate">{dream.content}</p>
-              <p className="text-white">
+              <p className="text-white break-words font-semibold">{dream.content}</p>
+              <p className="text-white text-sm mt-3">
                 Created At: {formatDateTime(dream.createdAt)}
               </p>
-              <p className="text-white">
+              <p className="text-white text-sm">
                 Updated At: {formatDateTime(dream.updatedAt)}
               </p>
             </Link>
