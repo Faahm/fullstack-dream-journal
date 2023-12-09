@@ -20,6 +20,7 @@ module.exports = {
       secondary: "#a482ee",
       accent: "#844ff9",
       white: "#ffffff",
+      delete: "#b0054b",
     },
     fontFamily: {
       display: ["Kon Tiki Aloha JF Regular", "sans-serif"],

@@ -18,10 +18,10 @@ const Home = async () => {
           unoptimized
           priority
         />
-      </div>
-      <Link href="/add-dream" className="font-bold text-accent underline">
+      <Link href="/add-dream" className="text-lg bg-white text-text font-semibold px-4 py-2 rounded-md mt-4">
         Add a dream
       </Link>
+      </div>
       <DreamsList data={dreams} />
     </div>
   );

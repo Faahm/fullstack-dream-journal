@@ -41,7 +41,7 @@ const DreamsList = ({ data }) => {
             </Link>
             <button
               onClick={() => handleOnClickDelete(dream.id)}
-              className="bg-white text-text font-semibold px-4 py-2 rounded-md mt-4"
+              className="bg-white text-text font-semibold px-4 py-2 rounded-md mt-4 hover:bg-delete hover:text-white transition duration-300"
             >
               Delete
             </button>
