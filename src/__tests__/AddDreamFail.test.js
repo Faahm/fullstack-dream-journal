@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, fireEvent, screen } from "@testing-library/react";
-import AddDream from "../app/components/AddDream";
+import AddDream from "../app/add-dream/page";
 import { createDreamAction } from "../app/components/_actions";
 import React from "react";
 

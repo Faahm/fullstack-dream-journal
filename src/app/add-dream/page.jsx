@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { createDreamAction } from "./_actions";
+import { createDreamAction } from "../components/_actions";
 
 const AddDream = () => {
   const [title, setTitle] = useState("");
@@ -26,6 +26,7 @@ const AddDream = () => {
       setTitle("");
       setContent("");
       console.log("Successful");
+      window.location.href = "/";
     } catch (error) {
       console.error("Error adding dream:", error);
     }

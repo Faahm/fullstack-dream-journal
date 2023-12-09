@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, fireEvent } from "@testing-library/react";
-import AddDream from "../app/components/AddDream";
+import AddDream from "../app/add-dream/page";
 
 describe("AddDream Component", () => {
   it("updates state when title and content input change", () => {

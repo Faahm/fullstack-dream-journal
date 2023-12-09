@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
-import AddDream from "../app/components/AddDream";
+import AddDream from "../app/add-dream/page";
 
 describe("AddDream Component", () => {
   it("Renders AddDream component correctly", () => {

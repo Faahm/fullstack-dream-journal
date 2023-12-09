@@ -1,8 +1,8 @@
 import React from "react";
-import AddDream from "./components/AddDream";
 import DreamsList from "./components/DreamsList";
 import { getAllDreams } from "../lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 const Home = async () => {
   const dreams = await getAllDreams();
@@ -19,7 +19,9 @@ const Home = async () => {
           priority
         />
       </div>
-      <AddDream />
+      <Link href="/add-dream" className="font-bold text-accent underline">
+        Add a dream
+      </Link>
       <DreamsList data={dreams} />
     </div>
   );
